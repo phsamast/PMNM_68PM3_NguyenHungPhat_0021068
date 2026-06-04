@@ -31,15 +31,20 @@
             </tr>
         </thead>
         <tbody>
-            <?php $sinhvien = (isset($sinhvien) && is_array($sinhvien)) ? $sinhvien : []; ?>
-            <?php foreach($sinhvien as $sv): ?>
+            <?php if(isset($sinhvien) && is_array($sinhvien)): ?>
+                <?php foreach($sinhvien as $sv): ?>
+                    <tr>
+                        <td><?php echo $sv['id']; ?></td>
+                        <td><?php echo $sv['MSSV']; ?></td>
+                        <td><?php echo $sv['HoTen']; ?></td>
+                        <td><?php echo $sv['GioiTinh']; ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
                 <tr>
-                    <td><?php echo $sv['id']; ?></td>
-                    <td><?php echo $sv['MSSV']; ?></td>
-                    <td><?php echo $sv['HoTen']; ?></td>
-                    <td><?php echo $sv['GioiTinh']; ?></td>
+                    <td colspan="4">Không có dữ liệu sinh viên</td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
     </table>
 </body>
