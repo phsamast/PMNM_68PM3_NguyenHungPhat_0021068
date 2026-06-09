@@ -6,7 +6,6 @@
     <title>Thêm sinh viên</title>
 </head>
 <body>
-    <h2> Đây là trang tạo sinh viên</h2>
    <h1>Thêm sinh viên</h1>
    <form action="/sinhvien/store" method="POST">
         <label for="HoTen">Họ tên:</label>
