@@ -1,4 +1,5 @@
 <?php
+require_once '../app/core/Controller.php';
 class App
 {
     protected $controller = 'home';

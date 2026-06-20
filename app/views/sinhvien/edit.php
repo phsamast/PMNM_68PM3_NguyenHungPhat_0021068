@@ -1,4 +1,5 @@
 <?php
+/** @var array $sinhvien */
 /** @var array $classes */
 ?>
 <!DOCTYPE html>
@@ -6,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm sinh viên</title>
+    <title>Sửa sinh viên</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -47,7 +48,7 @@
         input[type="submit"], .btn-back {
             width: 100%;
             padding: 10px;
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 4px;
@@ -57,7 +58,7 @@
             margin-top: 10px;
         }
         input[type="submit"]:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
         .btn-back {
             display: block;
@@ -73,25 +74,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>Thêm sinh viên</h1>
-        <form action="<?php echo url('/sinhvien/store'); ?>" method="POST">
+        <h1>Cập nhật sinh viên</h1>
+        <form action="<?php echo url('/sinhvien/update/' . $sinhvien['id']); ?>" method="POST">
             <div class="form-group">
                 <label for="MSSV">MSSV:</label>
-                <input type="text" id="MSSV" name="MSSV" required>
+                <input type="text" id="MSSV" name="MSSV" value="<?php echo htmlspecialchars($sinhvien['MSSV']); ?>" required>
             </div>
             
             <div class="form-group">
                 <label for="HoTen">Họ tên:</label>
-                <input type="text" id="HoTen" name="HoTen" required>
+                <input type="text" id="HoTen" name="HoTen" value="<?php echo htmlspecialchars($sinhvien['HoTen']); ?>" required>
             </div>
             
             <div class="form-group">
                 <label for="GioiTinh">Giới tính:</label>
                 <select id="GioiTinh" name="GioiTinh" required>
                     <option value="">Chọn giới tính</option>
-                    <option value="Nam">Nam</option>
-                    <option value="Nữ">Nữ</option>
-                    <option value="Khác">Khác</option>
+                    <option value="Nam" <?php echo $sinhvien['GioiTinh'] === 'Nam' ? 'selected' : ''; ?>>Nam</option>
+                    <option value="Nữ" <?php echo $sinhvien['GioiTinh'] === 'Nữ' ? 'selected' : ''; ?>>Nữ</option>
+                    <option value="Khác" <?php echo $sinhvien['GioiTinh'] === 'Khác' ? 'selected' : ''; ?>>Khác</option>
                 </select>
             </div>
 
@@ -100,14 +101,14 @@
                 <select id="MaLop" name="MaLop">
                     <option value="">Chọn lớp học (nếu có)</option>
                     <?php foreach ($classes as $class): ?>
-                        <option value="<?php echo htmlspecialchars($class['MaLop']); ?>">
+                        <option value="<?php echo htmlspecialchars($class['MaLop']); ?>" <?php echo $sinhvien['MaLop'] === $class['MaLop'] ? 'selected' : ''; ?>>
                             <?php echo htmlspecialchars($class['MaLop'] . ' - ' . $class['TenLop']); ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
-            <input type="submit" value="Thêm sinh viên">
+            <input type="submit" value="Cập nhật">
             <a href="<?php echo url('/sinhvien/index'); ?>" class="btn-back">Quay lại danh sách</a>
         </form>
     </div>

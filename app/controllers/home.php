@@ -1,7 +1,12 @@
 <?php
-class home{
+require_once '../app/core/Controller.php';
+class home extends Controller {
     public function index(){
-        require_once '../app/views/home/index.php';
+        if (isset($_SESSION['username'])) {
+            header('Location: ' . url('/sinhvien/index'));
+            exit();
+        }
+        $this->view('home/index', [], 'Trang chủ');
     }
     public function login(){
         require_once '../app/views/home/login.php';

@@ -1,12 +1,12 @@
 <?php
-/** @var array $classes */
+/** @var array $lophoc */
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm sinh viên</title>
+    <title>Sửa lớp học</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -37,7 +37,7 @@
             margin-bottom: 5px;
             font-weight: 600;
         }
-        input[type="text"], select {
+        input[type="text"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -47,7 +47,7 @@
         input[type="submit"], .btn-back {
             width: 100%;
             padding: 10px;
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 4px;
@@ -57,7 +57,7 @@
             margin-top: 10px;
         }
         input[type="submit"]:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
         .btn-back {
             display: block;
@@ -73,42 +73,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>Thêm sinh viên</h1>
-        <form action="<?php echo url('/sinhvien/store'); ?>" method="POST">
+        <h1>Cập nhật lớp học</h1>
+        <form action="<?php echo url('/lophoc/update/' . $lophoc['id']); ?>" method="POST">
             <div class="form-group">
-                <label for="MSSV">MSSV:</label>
-                <input type="text" id="MSSV" name="MSSV" required>
+                <label for="MaLop">Mã lớp học:</label>
+                <input type="text" id="MaLop" name="MaLop" value="<?php echo htmlspecialchars($lophoc['MaLop']); ?>" required>
             </div>
             
             <div class="form-group">
-                <label for="HoTen">Họ tên:</label>
-                <input type="text" id="HoTen" name="HoTen" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="GioiTinh">Giới tính:</label>
-                <select id="GioiTinh" name="GioiTinh" required>
-                    <option value="">Chọn giới tính</option>
-                    <option value="Nam">Nam</option>
-                    <option value="Nữ">Nữ</option>
-                    <option value="Khác">Khác</option>
-                </select>
+                <label for="TenLop">Tên lớp học:</label>
+                <input type="text" id="TenLop" name="TenLop" value="<?php echo htmlspecialchars($lophoc['TenLop']); ?>" required>
             </div>
 
-            <div class="form-group">
-                <label for="MaLop">Lớp học:</label>
-                <select id="MaLop" name="MaLop">
-                    <option value="">Chọn lớp học (nếu có)</option>
-                    <?php foreach ($classes as $class): ?>
-                        <option value="<?php echo htmlspecialchars($class['MaLop']); ?>">
-                            <?php echo htmlspecialchars($class['MaLop'] . ' - ' . $class['TenLop']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-
-            <input type="submit" value="Thêm sinh viên">
-            <a href="<?php echo url('/sinhvien/index'); ?>" class="btn-back">Quay lại danh sách</a>
+            <input type="submit" value="Cập nhật">
+            <a href="<?php echo url('/lophoc/index'); ?>" class="btn-back">Quay lại danh sách</a>
         </form>
     </div>
 </body>

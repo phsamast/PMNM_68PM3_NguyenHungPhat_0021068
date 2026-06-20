@@ -7,5 +7,5 @@ Options -Indexes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-#Điều hướng tất cả các yêu cầu tới index.php
-RewriteRule ^(.*)$ index.php?url=$1
+#Điều hướng tất cả các yêu cầu tới index.php và giữ nguyên các tham số query
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

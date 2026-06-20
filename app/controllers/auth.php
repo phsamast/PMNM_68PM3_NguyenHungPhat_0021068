@@ -10,12 +10,19 @@
                 $password = $_POST['password'] ?? '';
                 if (isset($this->user[$username]) && $this->user[$username] === $password) {
                     $_SESSION['username'] = $username;
-                    header('Location: /sinhvien/index');
+                    header('Location: ' . url('/sinhvien/index'));
                     exit();
                 } else {
-                    header('Location: /home/login');
+                    header('Location: ' . url('/home/login'));
                     exit();
                 }
             }
+        }
+
+        public function logout() {
+            unset($_SESSION['username']);
+            session_destroy();
+            header('Location: ' . url('/home/login'));
+            exit();
         }
     }
